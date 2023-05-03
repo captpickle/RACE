@@ -32,31 +32,20 @@ contract InSecureum is Context, IERC20, IERC20Metadata {
         return _totalSupply;
     }
 
-    function balanceOf(
-        address account
-    ) public view virtual override returns (uint256) {
+    function balanceOf(address account) public view virtual override returns (uint256) {
         return _balances[account];
     }
 
-    function transfer(
-        address recipient,
-        uint256 amount
-    ) public virtual override returns (bool) {
+    function transfer(address recipient, uint256 amount) public virtual override returns (bool) {
         _transfer(_msgSender(), recipient, amount);
         return true;
     }
 
-    function allowance(
-        address owner,
-        address spender
-    ) public view virtual override returns (uint256) {
+    function allowance(address owner, address spender) public view virtual override returns (uint256) {
         return _allowances[owner][spender];
     }
 
-    function approve(
-        address spender,
-        uint256 amount
-    ) public virtual override returns (bool) {
+    function approve(address spender, uint256 amount) public virtual override returns (bool) {
         _approve(_msgSender(), spender, amount);
         return true;
     }
@@ -76,32 +65,18 @@ contract InSecureum is Context, IERC20, IERC20Metadata {
         return true;
     }
 
-    function increaseAllowance(
-        address spender,
-        uint256 addedValue
-    ) public virtual returns (bool) {
-        _approve(
-            _msgSender(),
-            spender,
-            _allowances[_msgSender()][spender] + addedValue
-        );
+    function increaseAllowance(address spender, uint256 addedValue) public virtual returns (bool) {
+        _approve(_msgSender(), spender, _allowances[_msgSender()][spender] + addedValue);
         return true;
     }
 
-    function decreaseAllowance(
-        address spender,
-        uint256 subtractedValue
-    ) public virtual returns (bool) {
+    function decreaseAllowance(address spender, uint256 subtractedValue) public virtual returns (bool) {
         uint256 currentAllowance = _allowances[_msgSender()][spender];
-        require(
-            currentAllowance > subtractedValue,
-            "ERC20: decreased allowance below zero"
-        );
+        require(currentAllowance > subtractedValue, "ERC20: decreased allowance below zero");
         _approve(_msgSender(), spender, currentAllowance - subtractedValue);
         return true;
     }
-
-    function _transfer(
+function _transfer(
         address sender,
         address recipient,
         uint256 amount
@@ -109,10 +84,7 @@ contract InSecureum is Context, IERC20, IERC20Metadata {
         require(sender != address(0), "ERC20: transfer from the zero address");
         require(recipient != address(0), "ERC20: transfer to the zero address");
         uint256 senderBalance = _balances[sender];
-        require(
-            senderBalance >= amount,
-            "ERC20: transfer amount exceeds balance"
-        );
+        require(senderBalance >= amount, "ERC20: transfer amount exceeds balance");
         unchecked {
             _balances[sender] = senderBalance - amount;
         }
@@ -128,10 +100,7 @@ contract InSecureum is Context, IERC20, IERC20Metadata {
 
     function _burn(address account, uint256 amount) internal virtual {
         require(account != address(0), "ERC20: burn from the zero address");
-        require(
-            _balances[account] >= amount,
-            "ERC20: burn amount exceeds balance"
-        );
+        require(_balances[account] >= amount, "ERC20: burn amount exceeds balance");
         unchecked {
             _balances[account] = _balances[account] - amount;
         }
