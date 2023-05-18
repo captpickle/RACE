@@ -126,9 +126,12 @@ function _transfer(
 
 ---
 
-**[Q1] _InSecureum_ implements**
+### **[Q1] _InSecureum_ implements**
 
 (A): Atypical decimals value  
+
+
+
 (B): Non-standard _decreaseAllowance_ and _increaseAllowance_  
 (C): Non-standard _transfer_  
 (D): None of the above  
@@ -137,7 +140,7 @@ function _transfer(
 
 ---
 
-**[Q2] In _InSecureum_**
+### **[Q2] In _InSecureum_**
 
 (A): `_decimals()` can have _pure_ state mutability instead of _view_  
 (B): `_burn()` can have _external_ visibility instead of _internal_  
@@ -148,7 +151,7 @@ function _transfer(
 
 ---
 
-**[Q3] _InSecureum_ _transferFrom()_**
+### **[Q3] _InSecureum_ _transferFrom()_**
 
 (A): Is susceptible to an integer underflow  
 (B): Has an incorrect allowance check  
@@ -159,20 +162,31 @@ function _transfer(
 
 ---
 
-**[Q4] In _InSecureum_**
+### **[Q4] In _InSecureum_**
 
-(A): _increaseAllowance_ is susceptible to an integer overflow  
+##### (A): _increaseAllowance_ is susceptible to an integer overflow  
+
+？？ 不明白
+
 (B): _decreaseAllowance_ is susceptible to an integer overflow  
 (C): _decreaseAllowance_ does not allow reducing allowance to zero  
-(D): _decreaseAllowance_ can be optimised with `unchecked{}`  
+
+##### (D): _decreaseAllowance_ can be optimised with `unchecked{}`  
+
+  怎么优化呢。。
+
+​       
 
 **[Answers]: C, D**
 
 ---
 
-**[Q5] _InSecureum_ `_transfer()`**
+### **[Q5] _InSecureum_ `_transfer()`**
 
-(A): Is missing a zero-address validation  
+(A): Is missing a zero-address validation   
+
+ 
+
 (B): Is susceptible to an integer overflow  
 (C): Is susceptible to an integer underflow  
 (D): None of the above  
@@ -181,7 +195,7 @@ function _transfer(
 
 ---
 
-**[Q6] _InSecureum_ `_mint()`**
+### **[Q6] _InSecureum_ `_mint()`**
 
 (A): Is missing a zero-address validation  
 (B): Has an incorrect event emission  
@@ -192,7 +206,7 @@ function _transfer(
 
 ---
 
-**[Q7] _InSecureum_ `_burn()`**
+### **[Q7] _InSecureum_ `_burn()`**
 
 (A): Is missing a zero-address validation  
 (B): Has an incorrect event emission  
@@ -203,7 +217,7 @@ function _transfer(
 
 ---
 
-**[Q8] _InSecureum_ `_approve()`**
+### **[Q8] _InSecureum_ `_approve()`**
 
 (A): Is missing a zero-address validation  
 (B): Has incorrect error messages  
