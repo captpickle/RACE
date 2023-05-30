@@ -1,3 +1,4 @@
+// https://ventral.digital/posts/2023/5/29/race-18-of-the-secureum-bootcamp-epoch-infinity
 pragma solidity ^0.8.0; // using 0.8 to be safe from arithmetic risks
 
 interface IERC20 {
@@ -67,6 +68,7 @@ contract Bank{
    Getter
    ***/
 
+    //#todo 总是返回0 ？
    // Return the balance of the user
    function getBalances(address user) public nonReentrant returns(uint balance){
        uint balance = balances[user];
@@ -76,6 +78,8 @@ contract Bank{
    Withdraw functions
    ***/
 
+
+    //todo 重入 ？？ 关于cei 模式是什么啊 ？
    function withdraw(uint amount) nonReentrant public{
        // Cannot withdraw if some tokens have been minted
        require(minted[msg.sender]==0);
@@ -94,6 +98,9 @@ contract Bank{
    Mint/burn functions
    ***/
 
+
+
+    //todo 没有token 可以铸造代币吗？？ 
    // Mint tokens
    // The user must have locked enough ether in the contract
    // This function only mint whole number and not fraction.
@@ -110,6 +117,7 @@ contract Bank{
        token.mint(amount * decimals_factor, msg.sender);
    }
 
+    //todo  这里 可以抢跑么？？？
    /// @notice burn the token and unlock the account.
    function burn() nonReentrant public{
        // This will revert if the user does not have minted[msg.sender] tokens in its balance
@@ -123,7 +131,7 @@ contract Bank{
    /// @param desired_tokens The number of tokens to buy
    /// @param balance The ether balance available
    function _has_enough_balance(uint256 desired_tokens, uint256 balance) internal view {
-       uint256 required_balance = (desired_tokens / 10) * decimals_factor;
+       uint256 required_balance = (desired_tokens / 10) * decimals_factor; //:twc 精度问题
        require(balance >= required_balance);
    }
 
