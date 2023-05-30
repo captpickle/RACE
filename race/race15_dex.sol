@@ -57,7 +57,7 @@ contract SimpleDEX {
         fees = 0;
     }
 
-    //todo 是否可以被重入？？
+    //todo #4 是否可以被重入？？
     function buyEth(uint amount) external nonReentrant {
         require(amount >= 10);
         uint ratio = getEthPrice();

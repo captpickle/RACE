@@ -43,6 +43,8 @@ contract USDCCollateral {
         // Assume this is a correctly implemented function that computes the share of fees that someone should receive based on their balance.
     }
 
+  
+    // todo #2   没有加时间限制 ？所以用户可以 存入-获取奖励-取出 重入？
     // this function is called monthly by the lending platform
     // We compute how much fees the lender should receive and send it to them
     function payFees() external onlyLendingPlatform {
